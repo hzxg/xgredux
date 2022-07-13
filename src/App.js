@@ -1,25 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+import { connect } from 'react-redux';
+import {
+  getInputChangeAction,
+  getAddItemAction,
+  getDeleteItemAction,
+  getCompleteItemAction,
+  //getTodolist,
+  //initListAction,
+  getInitList,
+} from './store/actionCreators';
+import AppUI from './AppUI';
+//import axios from 'axios';
+
+const App = props => {
+  const {
+    deleteTodoItem,
+    inputValue,
+    changeInputValue,
+    addTodoItem,
+    completeTodoItem,
+    list,
+  } = props;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppUI
+      inputValue={inputValue}
+      list={list}
+      changeInputValue={changeInputValue}
+      addTodoItem={addTodoItem}
+      deleteTodoItem={deleteTodoItem}
+      completeTodoItem={completeTodoItem}
+    />
   );
-}
+};
+const mapStateToProps = state => {
+  return {
+    inputValue: state.inputValue,
+    list: state.list,
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    changeInputValue(e) {
+      const action = getInputChangeAction(e.target.value);
+      dispatch(action);
+    },
+    addTodoItem() {
+      const action = getAddItemAction();
+      dispatch(action);
+    },
+    deleteTodoItem(index) {
+      const action = getDeleteItemAction(index);
+      dispatch(action);
+    },
+    completeTodoItem(index) {
+      const action = getCompleteItemAction(index);
+      dispatch(action);
+    },
+    getInitList() {
+      const action = getInitList();
+      dispatch(action);
+    },
+  };
+};
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
