@@ -1,10 +1,16 @@
 import {
-  ADD_TODO_ITEM,
   CHANGE_INPUT_VALUE,
-  DELETE_TODO_ITEM,
-  INIT_LIST,
-  GET_INIT_LIST,
-  COMPLETE_TODO_ITEM,
+  ADD_USER,
+  DELETE_USER,
+  DELETE_USER2,
+  SET_USER_TMP_COUNTS,
+  SETTLEMENT,
+  INITGAME,
+  SWITCH_ON_CHANGE1,
+  SWITCH_ON_CHANGE2,
+  GOBACK,
+  EDIT_USER_COUNT,
+  GOFORWARD,
 } from './actionTypes';
 //import axios from 'axios';
 
@@ -13,36 +19,47 @@ export const getInputChangeAction = value => ({
   value,
 });
 
-export const getAddItemAction = () => ({
-  type: ADD_TODO_ITEM,
+export const addUser = () => ({
+  type: ADD_USER,
 });
-
-export const getDeleteItemAction = index => ({
-  type: DELETE_TODO_ITEM,
+export const deleteUser = index => ({
+  type: DELETE_USER,
   index,
 });
-export const getCompleteItemAction = index => ({
-  type: COMPLETE_TODO_ITEM,
+export const deleteUser2 = index => ({
+  type: DELETE_USER2,
   index,
 });
-export const initListAction = data => ({
-  type: INIT_LIST,
-  data,
+export const switchOnChange1 = index => ({
+  type: SWITCH_ON_CHANGE1,
+  index,
+});
+export const switchOnChange2 = index => ({
+  type: SWITCH_ON_CHANGE2,
+  index,
+});
+export const setusertmpcounts = (index, count) => ({
+  type: SET_USER_TMP_COUNTS,
+  index,
+  count,
+});
+export const settlement = time => ({
+  type: SETTLEMENT,
+  time,
 });
 
-export const getInitList = () => ({
-  type: GET_INIT_LIST,
+export const initGame = () => ({
+  type: INITGAME,
 });
-
-/*
-getCompleteItemAction
-export const getTodolist = () => {
-  return dispatch => {
-    axios.get('/list.json').then(res => {
-      const data = res.data;
-      const action = initListAction(data);
-      dispatch(action);
-    });
-  };
-};
-*/
+export const goBack = () => ({
+  type: GOBACK,
+});
+export const goforward = () => ({
+  type: GOFORWARD,
+});
+export const editUserCount = (index, count, listindex) => ({
+  type: EDIT_USER_COUNT,
+  index,
+  count,
+  listindex,
+});

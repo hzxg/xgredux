@@ -3,33 +3,50 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   getInputChangeAction,
-  getAddItemAction,
-  getDeleteItemAction,
-  getCompleteItemAction,
-  //getTodolist,
-  //initListAction,
-  getInitList,
+  addUser,
+  deleteUser,
+  deleteUser2,
+  settlement,
+  initGame,
+  switchOnChange1,
+  switchOnChange2,
+  goBack,
+  goforward,
 } from './store/actionCreators';
 import AppUI from './AppUI';
 //import axios from 'axios';
 
 const App = props => {
   const {
-    deleteTodoItem,
     inputValue,
     changeInputValue,
-    addTodoItem,
-    completeTodoItem,
     list,
+    list2,
+    addUser,
+    deleteUser,
+    deleteUser2,
+    settlement,
+    initGame,
+    switchOnChange1,
+    switchOnChange2,
+    goBack,
+    goforward,
   } = props;
   return (
     <AppUI
       inputValue={inputValue}
       list={list}
+      list2={list2}
       changeInputValue={changeInputValue}
-      addTodoItem={addTodoItem}
-      deleteTodoItem={deleteTodoItem}
-      completeTodoItem={completeTodoItem}
+      addUser={addUser}
+      deleteUser={deleteUser}
+      deleteUser2={deleteUser2}
+      settlement={settlement}
+      initGame={initGame}
+      switchOnChange1={switchOnChange1}
+      switchOnChange2={switchOnChange2}
+      goBack={goBack}
+      goforward={goforward}
     />
   );
 };
@@ -37,6 +54,7 @@ const mapStateToProps = state => {
   return {
     inputValue: state.inputValue,
     list: state.list,
+    list2: state.list2,
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -45,20 +63,40 @@ const mapDispatchToProps = dispatch => {
       const action = getInputChangeAction(e.target.value);
       dispatch(action);
     },
-    addTodoItem() {
-      const action = getAddItemAction();
+    addUser() {
+      const action = addUser();
       dispatch(action);
     },
-    deleteTodoItem(index) {
-      const action = getDeleteItemAction(index);
+    deleteUser(index) {
+      const action = deleteUser(index);
       dispatch(action);
     },
-    completeTodoItem(index) {
-      const action = getCompleteItemAction(index);
+    deleteUser2(index) {
+      const action = deleteUser2(index);
       dispatch(action);
     },
-    getInitList() {
-      const action = getInitList();
+    switchOnChange1(index) {
+      const action = switchOnChange1(index);
+      dispatch(action);
+    },
+    switchOnChange2(index) {
+      const action = switchOnChange2(index);
+      dispatch(action);
+    },
+    settlement() {
+      const action = settlement(new Date().toLocaleTimeString());
+      dispatch(action);
+    },
+    initGame() {
+      const action = initGame();
+      dispatch(action);
+    },
+    goBack() {
+      const action = goBack();
+      dispatch(action);
+    },
+    goforward() {
+      const action = goforward();
       dispatch(action);
     },
   };

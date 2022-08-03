@@ -1,8 +1,12 @@
-import { takeEvery, put } from 'redux-saga/effects';
-import { GET_INIT_LIST } from './actionTypes';
+//import { useState } from 'react';
+//import { takeEvery, select } from 'redux-saga/effects';
+//import { SETTLEMENT } from './actionTypes';
+
+/*
 import { initListAction } from './actionCreators';
 import axios from 'axios';
 
+ 
 function* getInitList() {
   try {
     const res = yield axios.get('/list.json');
@@ -12,9 +16,21 @@ function* getInitList() {
     console.log('网络请求失败');
   }
 }
+ */
+/*
+const getstate = state => state; 
+function* settlement() {
+  
+  const state = yield select(getstate);
+
+  yield console.log(state);
+}
+*/
+//const [bak1, setBak1] = useState('');
 
 function* mySaga() {
-  yield takeEvery(GET_INIT_LIST, getInitList);
+  // yield takeEvery(GET_INIT_LIST, getInitList);
+  // yield takeEvery(SETTLEMENT, settlement);
 }
 
 export default mySaga;
